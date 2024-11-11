@@ -35,7 +35,9 @@ export class BooksController {
   }
   // PUT /books/:id Обновить книгу по id
   @Put(':id')
-  async updateBook(@Param('id') id: number, @Body() bookDto: UpdateBookDto): Promise<void> {
+  async updateBook(
+    @Param('id') id: number,
+    @Body() bookDto: UpdateBookDto): Promise<void> {
     //необходимо вызвать соответствующий метод сервиса и вернуть результат
     //const result = await this.booksService.updateBook(id, book);
     //return result;
