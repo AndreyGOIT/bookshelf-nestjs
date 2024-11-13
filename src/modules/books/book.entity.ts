@@ -12,7 +12,7 @@ export class Book extends BaseEntity {
   @Column()
   ageRestriction: number;
 
-  @Column()
+  @Column({ nullable: true })
   ownerId: number; //id of the user who owns the book
 
   @Column({ nullable: true })
