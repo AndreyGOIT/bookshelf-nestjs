@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { UpdateBookDto } from './dto/update-book.dto';
@@ -30,8 +31,12 @@ export class BooksController {
   // POST /books Создать новую книгу
   @Post()
   @HttpCode(201)
-  async createBook(@Body() bookDto: CreateBookDto): Promise<void> {
-    return this.booksService.createBook(bookDto);
+  @UseGuards(AuthGuard)
+  async createBook(
+    @Body() bookDto: CreateBookDto,
+    @Request() req: any,
+  ): Promise<void> {
+    return this.booksService.createBook(bookDto, req.user.userId);
   }
   // PUT /books/:id Обновить книгу по id
   @Put(':id')
